@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 293ce8192c0300759c1ff685a7e8c82944decaede4cf4087c9530683729727c2
+-- hash: a359980368913e12c5719bff8f6518d52b4e2b7fbea7f3131c71174f5c706691
 
 name:           mattermost-bot
 version:        0.1.0.0
@@ -37,7 +37,8 @@ library
     , text
     , wreq
   exposed-modules:
-      Lib
+      Mattermost
+      Mattermost.Data
   other-modules:
       Paths_mattermost_bot
   default-language: Haskell2010

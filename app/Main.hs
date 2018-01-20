@@ -9,7 +9,7 @@ import Data.ByteString (unpack)
 import Data.Monoid
 import Data.Text.Encoding        (decodeUtf8)
 import GHC.Generics
-import Lib
+import Mattermost
 import Network.Wreq (get, post, responseBody, responseHeader, responseStatus, statusMessage)
 import System.Environment      (getEnv)
 
