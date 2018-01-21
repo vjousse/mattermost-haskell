@@ -23,7 +23,6 @@ login ::
 login loginId password url = do
   (Right <$> post url (toJSON $ Credentials loginId password)) `E.catch` handler
   where
-    handler ::
-         HttpExceptionContent -> IO (Either String (Response LBS.ByteString))
+    handler :: HttpException -> IO (Either String (Response LBS.ByteString))
     handler (StatusCodeException s _) = do
       return $ Left $ "error"
