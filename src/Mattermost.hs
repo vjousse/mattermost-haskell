@@ -20,7 +20,7 @@ import           Network.Wreq          (post, responseHeader, responseStatus,
 
 login :: Login -> Password -> Url -> IO (Either String Token)
 login loginId password url =
-  (Right <$> (show . (CL.^. responseHeader "token")) <$>
+  (Right . show . (CL.^. responseHeader "token") <$>
    post url (toJSON $ Credentials loginId password)) `E.catch`
   handler
   where
