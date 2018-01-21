@@ -5,6 +5,7 @@ module Mattermost.Data
   ( Login
   , Password
   , Url
+  , Token
   , Credentials(Credentials)
   ) where
 
@@ -18,8 +19,10 @@ type Password = String
 
 type Url = String
 
+type Token = String
+
 data Credentials = Credentials
-  { login_id :: Login
+  { loginId  :: Login
   , password :: Password
   } deriving (Generic, Show)
 
