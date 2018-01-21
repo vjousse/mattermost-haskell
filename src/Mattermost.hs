@@ -26,4 +26,5 @@ login loginId password url =
   where
     handler :: HttpException -> IO (Either String Token)
     handler (HttpExceptionRequest _ (StatusCodeException r _)) =
-      return $ Left $ show $ BSC.unpack (r CL.^. responseStatus . statusMessage)
+      return . Left . show . BSC.unpack $
+      (r CL.^. responseStatus . statusMessage)
