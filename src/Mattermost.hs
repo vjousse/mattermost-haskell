@@ -14,7 +14,7 @@ import qualified Data.ByteString.Lazy  as LBS
 import           GHC.Generics
 import           Mattermost.Data       (Credentials (Credentials), Login,
                                         Password, Url)
-import           Network.HTTP.Client   (HttpException, HttpExceptionContent (StatusCodeException),
+import           Network.HTTP.Client   (HttpException (HttpExceptionRequest), HttpExceptionContent (StatusCodeException),
                                         Response)
 import           Network.Wreq          (post, statusMessage)
 
@@ -24,5 +24,5 @@ login loginId password url = do
   (Right <$> post url (toJSON $ Credentials loginId password)) `E.catch` handler
   where
     handler :: HttpException -> IO (Either String (Response LBS.ByteString))
-    handler (StatusCodeException s _) = do
+    handler (HttpExceptionRequest _ (StatusCodeException s _)) = do
       return $ Left $ "error"

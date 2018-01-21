@@ -9,7 +9,7 @@ import           Data.Aeson.Lens    (key, _String)
 import           Data.ByteString    (unpack)
 import           Data.Text.Encoding (decodeUtf8)
 import           Mattermost
-import           Mattermost.Data    (Credentials)
+import           Mattermost.Data    (Credentials (Credentials))
 import           Network.Wreq       (get, post, responseBody, responseHeader,
                                      responseStatus, statusMessage)
 import           System.Environment (getEnv)
