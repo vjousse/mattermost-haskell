@@ -1,6 +1,3 @@
-{-# LANGUAGE DeriveGeneric     #-}
-{-# LANGUAGE OverloadedStrings #-}
-
 module Mattermost
   ( login
   ) where
@@ -16,13 +13,13 @@ import           Mattermost.Data       (Credentials (Credentials), Login,
                                         Password, Url)
 import           Network.HTTP.Client   (HttpException (HttpExceptionRequest), HttpExceptionContent (StatusCodeException),
                                         Response)
-import           Network.Wreq          (post, statusMessage)
+import           Network.Wreq          (post, responseStatus, statusMessage)
 
 login ::
      Login -> Password -> Url -> IO (Either String (Response LBS.ByteString))
-login loginId password url = do
+login loginId password url =
   (Right <$> post url (toJSON $ Credentials loginId password)) `E.catch` handler
   where
     handler :: HttpException -> IO (Either String (Response LBS.ByteString))
-    handler (HttpExceptionRequest _ (StatusCodeException s _)) = do
-      return $ Left $ "error"
+    handler (HttpExceptionRequest _ (StatusCodeException r _)) =
+      return $ Left $ BSC.unpack (r CL.^. responseStatus . statusMessage)
