@@ -1,8 +1,29 @@
+{-# LANGUAGE DeriveGeneric     #-}
+{-# LANGUAGE OverloadedStrings #-}
+
 module Mattermost
   ( login
   ) where
 
-import           Mattermost.Data (Login, Password, Url)
+import qualified Control.Exception     as E
 
-login :: Maybe Login -> Maybe Password -> Maybe Url -> Either String String
-login login password url = Left ""
+import qualified Control.Lens          as CL ((^.))
+import           Data.Aeson            (toJSON)
+import qualified Data.ByteString.Char8 as BSC
+import qualified Data.ByteString.Lazy  as LBS
+import           GHC.Generics
+import           Mattermost.Data       (Credentials (Credentials), Login,
+                                        Password, Url)
+import           Network.HTTP.Client   (HttpException, HttpExceptionContent (StatusCodeException),
+                                        Response)
+import           Network.Wreq          (post, statusMessage)
+
+login ::
+     Login -> Password -> Url -> IO (Either String (Response LBS.ByteString))
+login loginId password url = do
+  (Right <$> post url (toJSON $ Credentials loginId password)) `E.catch` handler
+  where
+    handler ::
+         HttpExceptionContent -> IO (Either String (Response LBS.ByteString))
+    handler (StatusCodeException s _) = do
+      return $ Left $ "error"

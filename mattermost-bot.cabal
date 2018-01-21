@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a359980368913e12c5719bff8f6518d52b4e2b7fbea7f3131c71174f5c706691
+-- hash: 0889038896b519acd9d8e4b4353896b706e014835aa42f8c61a44a07b02ffdac
 
 name:           mattermost-bot
 version:        0.1.0.0
@@ -32,6 +32,7 @@ library
       aeson
     , base >=4.7 && <5
     , bytestring
+    , http-client
     , lens
     , lens-aeson
     , text
@@ -52,6 +53,7 @@ executable mattermost-bot-exe
       aeson
     , base >=4.7 && <5
     , bytestring
+    , http-client
     , lens
     , lens-aeson
     , mattermost-bot
@@ -71,6 +73,7 @@ test-suite mattermost-bot-test
       aeson
     , base >=4.7 && <5
     , bytestring
+    , http-client
     , lens
     , lens-aeson
     , mattermost-bot

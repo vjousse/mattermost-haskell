@@ -27,6 +27,7 @@ dependencies:
 - lens
 - text
 - bytestring
+- http-client
 
 library:
   source-dirs: src
