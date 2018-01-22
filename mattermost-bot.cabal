@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0889038896b519acd9d8e4b4353896b706e014835aa42f8c61a44a07b02ffdac
+-- hash: e8717a44e6620cd63bddf31cf7a130d2fece99ad7315e4b284b81c02da1145ed
 
 name:           mattermost-bot
 version:        0.1.0.0
@@ -30,6 +30,7 @@ library
       src
   build-depends:
       aeson
+    , aeson-casing
     , base >=4.7 && <5
     , bytestring
     , http-client
@@ -40,6 +41,8 @@ library
   exposed-modules:
       Mattermost
       Mattermost.Data
+      Mattermost.Data.NotifyProps
+      Mattermost.Data.User
   other-modules:
       Paths_mattermost_bot
   default-language: Haskell2010
@@ -51,6 +54,7 @@ executable mattermost-bot-exe
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , aeson-casing
     , base >=4.7 && <5
     , bytestring
     , http-client
@@ -71,6 +75,7 @@ test-suite mattermost-bot-test
   ghc-options: -threaded -rtsopts -with-rtsopts=-N
   build-depends:
       aeson
+    , aeson-casing
     , base >=4.7 && <5
     , bytestring
     , http-client

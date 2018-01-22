@@ -28,6 +28,7 @@ dependencies:
 - text
 - bytestring
 - http-client
+- aeson-casing
 
 library:
   source-dirs: src
