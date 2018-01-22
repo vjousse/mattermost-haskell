@@ -10,3 +10,10 @@ To automatically watch for file changes and recompile:
 To check for unused imports, incomplete pattern matching, and so one, use `pedantic`:
 
     stack build --pedantic
+
+# Links
+
+## Aeson
+
+- https://www.schoolofhaskell.com/school/starting-with-haskell/libraries-and-frameworks/text-manipulation/json
+- https://artyom.me/aeson
