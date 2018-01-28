@@ -1,7 +1,7 @@
 {-# LANGUAGE DeriveGeneric #-}
 
 module Mattermost.Data.User
-  ( User
+  ( User(User)
   ) where
 
 import           Data.Aeson                  (FromJSON (..), ToJSON (..),
